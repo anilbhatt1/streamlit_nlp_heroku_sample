@@ -2,7 +2,7 @@ import streamlit as st
 
 #NLP pkgs
 import spacy
-import en_core_web_sm
+#import en_core_web_sm
 from textblob import TextBlob
 import gensim
 from gensim.summarization import summarize
