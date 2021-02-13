@@ -2,6 +2,7 @@ import streamlit as st
 
 #NLP pkgs
 import spacy
+import en_core_web_sm
 from textblob import TextBlob
 import gensim
 from gensim.summarization import summarize
@@ -45,7 +46,7 @@ def main():
     # Tokenization
     if st.checkbox('Show tokens and Lemma'):
         st.subheader('Tokenize your text')
-        message = st.text_area('Enter your text', 'Type here...', key='token')
+        message = st.text_area('Enter your text', key='token')
         if st.button('Analyze'):
             nlp_result = text_analyzer(message)
             st.json(nlp_result)
@@ -53,7 +54,7 @@ def main():
     # Named Entity
     if st.checkbox('Show named entities'):
         st.subheader('Extract entities from your text')
-        message = st.text_area('Enter your text', 'Type here...', key='entity')
+        message = st.text_area('Enter your text', key='entity')
         if st.button('Extract'):
             nlp_result = entity_analyzer(message)
             st.json(nlp_result)
@@ -61,7 +62,7 @@ def main():
     # Sentiment Analysis
     if st.checkbox('Show sentiment of input text'):
         st.subheader('Shows sentiment')
-        message = st.text_area('Enter your text', 'Type here...', key='sentiment')
+        message = st.text_area('Enter your text', key='sentiment')
         if st.button('Get Sentiment'):
             blob = TextBlob(message)
             result_sentiment = blob.sentiment
@@ -70,7 +71,7 @@ def main():
     # Text Summarization
     if st.checkbox('Show text summarization'):
         st.subheader('Summarize your text')
-        message = st.text_area('Enter your text', 'Type here...', key='summarize')
+        message = st.text_area('Enter your text', key='summarize')
         summary_options = st.selectbox("Select your summarizer",('gensim', 'sumy'))
         if st.button('Summarize'):
             if summary_options == 'gensim':
